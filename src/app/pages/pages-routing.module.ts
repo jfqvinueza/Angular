@@ -10,7 +10,6 @@ import { FichaPacienteComponent } from './ficha.paciente/ficha.paciente.componen
 const routes: Routes = [
   {
     path: 'dashboard', component: PagesComponent,
-    
     children: [
       {path:'',redirectTo:'/dashboard',pathMatch:'full'},
       { path:'', component: DashboardComponent },
@@ -18,9 +17,7 @@ const routes: Routes = [
       { path: 'citaMedica', component: CitaMedicaComponent }
     ]
   }
-
 ]
-
 @NgModule({
   declarations: [],
   imports: [
