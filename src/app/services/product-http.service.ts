@@ -1,37 +1,20 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ProductHttpService } from 'src/app/services/product-http.service';
+import { Injectable } from '@angular/core';
 
-@Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+@Injectable({
+  providedIn: 'root'
 })
+export class ProductHttpService {
 
+  constructor(private http: HttpClient) { }
 
-export class ProductComponent implements OnInit {
-  constructor(
-    /*private producthttp:ProductHttpService*/
-    private http: HttpClient
-    ) {}
-
-  //metodo que se ejecuata despues del constructor
-  ngOnInit(): void {
-    this.getProduct();
-    //this.postProduct();
-    //this.putProduct();
-    //this.upDateProduct();
-    //this.deleteProduct();
-  }
-
-
-
+  
   getProduct() {
-    const url = 'http://api.escuelajs.co/api/v1/products'
-    const response = this.http.get(url).subscribe(response=>console.table(response))
+    const url = 'api.escuelajs.co/api/v1/products'
+    const response = this.http.get(url).subscribe(response=>console.log(response))
   }
 
-
+  
 
   //recupera un solo objeto
   postProduct() {
@@ -48,7 +31,7 @@ export class ProductComponent implements OnInit {
 
     this.http.post(url, data).subscribe(response=>{console.log(response)})
 
-
+  
   }
 
 
@@ -56,11 +39,11 @@ export class ProductComponent implements OnInit {
   putProduct() {
     const data = {
       title:"PUT PRODUCT ",
-      price:907,
+      price:15,
       description:"PUT PRODUCT / Jimmy Vinueza",
 
     };
-    const url = 'https://api.escuelajs.co/api/v1/products/202'
+    const url = 'https://api.escuelajs.co/api/v1/products/281'
     const response = this.http.put(url, data).subscribe(response=>console.log(response))
 
   }
@@ -73,18 +56,15 @@ export class ProductComponent implements OnInit {
       images:["https://th.bing.com/th/id/R.00d06daad137141c6e44f55cd67e6a84?rik=kSj6NrybAOc9cQ&pid=ImgRaw&r=0"],
       categoryId:1
     };
-    const url = 'https://api.escuelajs.co/api/v1/products/202'
+    const url = 'https://api.escuelajs.co/api/v1/products/281'
     const response = this.http.put(url, data).subscribe(response=>console.log(response))
 
   }
 
-
+  
   deleteProduct() {
-    const url = 'https://api.escuelajs.co/api/v1/products/201'
+    const url = 'https://api.escuelajs.co/api/v1/products/281'
     const response = this.http.delete(url).subscribe(response=>console.log(response))
   }
-
-
-
 
 }

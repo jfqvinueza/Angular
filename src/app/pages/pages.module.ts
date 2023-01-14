@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CategoryComponent } from './category/category.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
+import { PagesComponent } from './pages.component';
 
 
 
