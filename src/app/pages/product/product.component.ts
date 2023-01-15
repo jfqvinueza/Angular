@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
       price:15,
       description:"utilez Escolares / Jimmy Vinueza",
       images:["https://www.bing.com/images/blob?bcid=sh3-c4QmFx4FQw"],
-      categoryId:1
+      categoryId:999
     };
 
     const url = 'https://api.escuelajs.co/api/v1/products'
@@ -60,7 +60,7 @@ export class ProductComponent implements OnInit {
       description:"PUT PRODUCT / Jimmy Vinueza",
 
     };
-    const url = 'https://api.escuelajs.co/api/v1/products/202'
+    const url = 'https://api.escuelajs.co/api/v1/products/999'
     const response = this.http.put(url, data).subscribe(response=>console.log(response))
 
   }
@@ -73,14 +73,14 @@ export class ProductComponent implements OnInit {
       images:["https://th.bing.com/th/id/R.00d06daad137141c6e44f55cd67e6a84?rik=kSj6NrybAOc9cQ&pid=ImgRaw&r=0"],
       categoryId:1
     };
-    const url = 'https://api.escuelajs.co/api/v1/products/202'
+    const url = 'https://api.escuelajs.co/api/v1/products/999'
     const response = this.http.put(url, data).subscribe(response=>console.log(response))
 
   }
 
 
   deleteProduct() {
-    const url = 'https://api.escuelajs.co/api/v1/products/201'
+    const url = 'https://api.escuelajs.co/api/v1/products/999'
     const response = this.http.delete(url).subscribe(response=>console.log(response))
   }
 
