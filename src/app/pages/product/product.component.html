@@ -1,2 +1,50 @@
-<p>product works!</p>
-<h1>Jimmy Vinueza present!</h1>
+
+<h2>Jimmy is present!</h2>
+<h1>PRODUCTOS</h1>
+
+<div class="card">
+    <div class="card-header">
+        Header
+    </div>
+    <div class="card-body">
+        <div class="form-check">
+            <label class="form-label" for="title"></label>
+            <input class="form-control" name="" id="title" type="text" value="{{selectedProduct.title}}" >
+          
+        
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+<hr>
+<div class="table-responsive">
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Actualizar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="" *ngFor="let product of products">
+                <td >{{product.title}}</td>
+                <td >{{product.price}}</td>
+                <td >{{product.description}}</td>
+                <td >{{product.category}}</td>
+                <td><img src="{{product.images}}" width="150px" height="150px" alt=""></td>
+                <td class="btn-20"><a href="#" (click)="deleteProduct()">eliminar</a></td>
+                <td class="btn-20"><button class="btn" (click)="editProduct(product)"></button></td>
+                
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+

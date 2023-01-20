@@ -4,5 +4,15 @@ export interface ProductModel{
     title:string
     price:number
     description:string
+    images: string[];
     category:CategoryModel;
 }
+
+export interface CreateProductDto extends Omit<ProductModel, 'id' | 'caregory'>{
+    categoryId:number;
+    }
+
+export interface UpdateProductDto extends Partial<ProductModel>{
+categoryId?:number;
+}
+

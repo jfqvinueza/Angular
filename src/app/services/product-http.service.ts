@@ -1,70 +1,47 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { CreateProductDto, ProductModel, UpdateProductDto } from '../entities/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class ProductHttpService {
 
-  constructor(private http: HttpClient) { }
+  readonly API_URL ='https://api.escuelajs.co/api/v1/products';
 
-  
-  getProduct() {
-    const url = 'api.escuelajs.co/api/v1/products'
-    const response = this.http.get(url).subscribe(response=>console.log(response))
+  constructor(private httpClient: HttpClient) {}
+
+  getAll():Observable<ProductModel[]>
+  {
+    //obtenemos un aray
+    const url=`${this.API_URL}`;
+    return this.httpClient.get<ProductModel[]>(url);
   }
 
-  
-
-  //recupera un solo objeto
-  postProduct() {
-
-    const data = {
-      title:"Libros",
-      price:15,
-      description:"utilez Escolares / Jimmy Vinueza",
-      images:["https://www.bing.com/images/blob?bcid=sh3-c4QmFx4FQw"],
-      categoryId:1
-    };
-
-    const url = 'https://api.escuelajs.co/api/v1/products'
-
-    this.http.post(url, data).subscribe(response=>{console.log(response)})
-
-  
+  getOne(id:ProductModel["id"]):Observable<ProductModel>
+  {
+    const url = `${this.API_URL}/${id}`;
+    return this.httpClient.get<ProductModel>(url);
   }
 
 
-
-  putProduct() {
-    const data = {
-      title:"PUT PRODUCT ",
-      price:15,
-      description:"PUT PRODUCT / Jimmy Vinueza",
-
-    };
-    const url = 'https://api.escuelajs.co/api/v1/products/281'
-    const response = this.http.put(url, data).subscribe(response=>console.log(response))
-
+  store(product:CreateProductDto):Observable<ProductModel>
+  {
+    const url = `${this.API_URL}`;
+    return this.httpClient.post<ProductModel>(url, product);
   }
 
-  upDateProduct() {
-    const data = {
-      title:"GAMES",
-      price:15,
-      description:"WARZONE / Jimmy Vinueza UPDATE",
-      images:["https://th.bing.com/th/id/R.00d06daad137141c6e44f55cd67e6a84?rik=kSj6NrybAOc9cQ&pid=ImgRaw&r=0"],
-      categoryId:1
-    };
-    const url = 'https://api.escuelajs.co/api/v1/products/281'
-    const response = this.http.put(url, data).subscribe(response=>console.log(response))
-
+  update(id:ProductModel["id"], product:UpdateProductDto):Observable<ProductModel>
+  {
+    const url = `${this.API_URL}/${id}`
+    return this.httpClient.put<ProductModel>(url, product);
   }
 
-  
-  deleteProduct() {
-    const url = 'https://api.escuelajs.co/api/v1/products/281'
-    const response = this.http.delete(url).subscribe(response=>console.log(response))
+  destroy(id:ProductModel["id"]):Observable<any>
+  {
+    const url = `${this.API_URL}/${id}`
+    return this.httpClient.delete<any>(url).pipe(map((response:{rta:boolean})=>{ return response.rta}));
   }
-
 }
